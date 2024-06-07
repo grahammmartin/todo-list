@@ -19,7 +19,6 @@ const useTodos = () => {
   const loadTodos = async (page: number, filter: Filter) => {
     const isCompleted = filter === 'all' ? '' : filter === 'completed';
     const { todos, meta } = await getTodos(page, isCompleted);
-    // console.log(todos)
     setTodos(todos);
     setMeta(meta);
   };
@@ -31,8 +30,7 @@ const useTodos = () => {
   const handleCreate = async (todo: Todo) => {
     try {
       const { todo: createdTodo } = await createTodo(todo);
-      setTodos(prev => [...prev, createdTodo]);
-      loadTodos(meta.current_page, filter);
+      setTodos(prev => [createdTodo, ...prev]);
       toast.success('Todo created successfully');
     } catch (error: any) {
       toast.error(error.message);
@@ -57,7 +55,6 @@ const useTodos = () => {
     try {
       const { todo: updatedTodo } = await updateTodo(todo.id!.toString(), todo);
       setTodos(prev => prev.map(t => (t.id === todo.id ? updatedTodo : t)));
-      loadTodos(meta.current_page, filter);
       if (isEditing) toast.success('Todo updated successfully');
       else if (todo.is_completed) toast.success('Todo completed successfully');
       else if (!todo.is_completed) toast.success('Todo reverted successfully');

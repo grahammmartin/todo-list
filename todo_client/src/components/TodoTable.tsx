@@ -7,14 +7,21 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import { Checkbox } from '@mui/material';
+import { Checkbox, Stack } from '@mui/material';
 import { useTodoContext } from '../context/TodoContext';
 import TodoMenu from './TodoMenu';
 
-const columns = [
-  { id: 'complete', label: 'Complete', minWidth: 100 },
-  { id: 'title', label: 'Title', minWidth: 170 },
-  { id: 'description', label: 'Description', minWidth: 170 },
+type Column = {
+  id: string;
+  label: string;
+  minWidth: number;
+  align?: 'left' | 'center' | 'right' | 'inherit' | 'justify';
+};
+
+const columns: Column[] = [
+  { id: 'complete', label: 'Complete', minWidth: 100, align: 'left' },
+  { id: 'title', label: 'Title', minWidth: 170, align: 'left' },
+  { id: 'description', label: 'Description', minWidth: 170, align: 'left' },
   { id: 'actions', label: 'Actions', minWidth: 170, align: 'center' },
 ];
 
@@ -62,6 +69,7 @@ const TodoTable: React.FC = () => {
                     <TableCell
                       key={column.id}
                       style={{ minWidth: column.minWidth }}
+                      align={column.align}
                     >
                       {column.label}
                     </TableCell>
@@ -69,46 +77,42 @@ const TodoTable: React.FC = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {todos
-                  // .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map(todo => {
-                    return (
-                      <TableRow
-                        hover
-                        role="checkbox"
-                        tabIndex={-1}
-                        key={todo.id}
-                        className={todo.is_completed ? 'opacity-50' : ''}
-                      >
-                        <TableCell padding="checkbox">
-                          <Checkbox
-                            color="primary"
-                            checked={todo.is_completed}
-                            onChange={() =>
-                              onUpdate({
-                                id: todo.id,
-                                is_completed: !todo.is_completed,
-                              })
-                            }
-                            inputProps={{
-                              'aria-label': 'select all desserts',
-                            }}
-                          />
-                        </TableCell>
-                        <TableCell>
-                          <p
-                            className={todo.is_completed ? 'line-through' : ''}
-                          >
-                            {todo.title}
-                          </p>
-                        </TableCell>
-                        <TableCell>{todo.description}</TableCell>
-                        <TableCell align="center">
-                          <TodoMenu todo={todo} />
-                        </TableCell>
-                      </TableRow>
-                    );
-                  })}
+                {todos.map(todo => (
+                  <TableRow
+                    hover
+                    role="checkbox"
+                    tabIndex={-1}
+                    key={todo.id}
+                    className={todo.is_completed ? 'opacity-50' : ''}
+                  >
+                    <TableCell padding="checkbox">
+                      <Stack className="w-full" alignItems={'center'}>
+                        <Checkbox
+                          color="primary"
+                          checked={todo.is_completed}
+                          onChange={() =>
+                            onUpdate({
+                              id: todo.id,
+                              is_completed: !todo.is_completed,
+                            })
+                          }
+                          inputProps={{
+                            'aria-label': 'select all desserts',
+                          }}
+                        />
+                      </Stack>
+                    </TableCell>
+                    <TableCell>
+                      <p className={todo.is_completed ? 'line-through' : ''}>
+                        {todo.title}
+                      </p>
+                    </TableCell>
+                    <TableCell>{todo.description}</TableCell>
+                    <TableCell align="center">
+                      <TodoMenu todo={todo} />
+                    </TableCell>
+                  </TableRow>
+                ))}
               </TableBody>
             </Table>
           </TableContainer>
