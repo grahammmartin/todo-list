@@ -18,7 +18,7 @@ const columns = [
   { id: 'actions', label: 'Actions', minWidth: 170, align: 'center' },
 ];
 
-const StickyHeadTable: React.FC = () => {
+const TodoTable: React.FC = () => {
   const {
     meta,
     todos,
@@ -113,7 +113,7 @@ const StickyHeadTable: React.FC = () => {
             </Table>
           </TableContainer>
           <TablePagination
-            rowsPerPageOptions={[10, 15]}
+            rowsPerPageOptions={[]}
             component="div"
             count={meta.total_count}
             rowsPerPage={rowsPerPage}
@@ -129,4 +129,4 @@ const StickyHeadTable: React.FC = () => {
   );
 };
 
-export default StickyHeadTable;
+export default TodoTable;

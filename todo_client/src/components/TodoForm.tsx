@@ -17,8 +17,6 @@ const TodoForm: React.FC = () => {
     setTodo,
   } = useTodoContext();
 
-  console.log(todo);
-
   const handleInputChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -40,7 +38,7 @@ const TodoForm: React.FC = () => {
     }
 
     if (todo) {
-      onUpdate({ ...todo, ...formData });
+      onUpdate({ ...todo, ...formData }, true);
       setFormData({ title: '', description: '' });
       setTodo(null);
       return;

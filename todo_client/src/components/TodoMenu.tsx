@@ -82,17 +82,19 @@ const TodoMenu: React.FC<TodoMenuProps> = ({ todo }) => {
             <span>Delete</span>
           </Stack>
         </MenuItem>
-        <MenuItem onClick={handleEditClick}>
-          <Stack
-            direction="row"
-            spacing={1}
-            alignItems={'center'}
-            justifyContent={'center'}
-          >
-            <Edit fontSize="small" />
-            <span>Edit</span>
-          </Stack>
-        </MenuItem>
+        {!todo?.is_completed && (
+          <MenuItem onClick={handleEditClick}>
+            <Stack
+              direction="row"
+              spacing={1}
+              alignItems={'center'}
+              justifyContent={'center'}
+            >
+              <Edit fontSize="small" />
+              <span>Edit</span>
+            </Stack>
+          </MenuItem>
+        )}
       </Menu>
 
       <DeleteConfirmationModal

@@ -14,7 +14,7 @@ interface TodoContextType {
   loadTodos: (page: number, filter: Filter) => void;
   handleCreate: (todo: Todo) => Promise<void>;
   handleDelete: (id: number) => Promise<void>;
-  handleUpdate: (todo: Partial<Todo>) => Promise<void>;
+  handleUpdate: (todo: Partial<Todo>, isEditing?: boolean) => Promise<void>;
 }
 
 const TodoContext = createContext<TodoContextType | undefined>(undefined);

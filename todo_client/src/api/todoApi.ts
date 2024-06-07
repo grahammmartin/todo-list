@@ -3,7 +3,7 @@ import { Todo } from '../types/todo';
 import { PaginationMeta } from '../types/pagination';
 
 const apiUrl = import.meta.env.VITE_API_URL;
-console.log(apiUrl);
+
 export const createTodo = async (todo: Todo): Promise<{ todo: Todo }> => {
   try {
     const response = await axios.post(`${apiUrl}/api/v1/todos`, { todo });

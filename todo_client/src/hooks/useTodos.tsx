@@ -50,14 +50,17 @@ const useTodos = () => {
     }
   };
 
-  const handleUpdate = async (todo: Partial<Todo>) => {
+  const handleUpdate = async (
+    todo: Partial<Todo>,
+    isEditing: boolean = false
+  ) => {
     try {
       const { todo: updatedTodo } = await updateTodo(todo.id!.toString(), todo);
       setTodos(prev => prev.map(t => (t.id === todo.id ? updatedTodo : t)));
       loadTodos(meta.current_page, filter);
-      if (todo.is_completed) toast.success('Todo completed successfully');
+      if (isEditing) toast.success('Todo updated successfully');
+      else if (todo.is_completed) toast.success('Todo completed successfully');
       else if (!todo.is_completed) toast.success('Todo reverted successfully');
-      else toast.success('Todo updated successfully');
     } catch (error: any) {
       toast.error(error.message);
     }
