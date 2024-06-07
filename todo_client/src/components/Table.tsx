@@ -30,7 +30,7 @@ const StickyHeadTable: React.FC = () => {
   const [page, setPage] = React.useState(meta.current_page - 1);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-  const handleChangePage = (event: unknown, newPage: number) => {
+  const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
     loadTodos(newPage + 1, filter);
   };
