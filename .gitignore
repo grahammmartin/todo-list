@@ -1,0 +1,59 @@
+
+################### Todo Client ###################
+# Node Modules
+/todo_client/node_modules
+
+# Logs
+/todo_client/logs
+/todo_client/*.log
+/todo_client/npm-debug.log*
+/todo_client/yarn-debug.log*
+/todo_client/yarn-error.log*
+/todo_client/pnpm-debug.log*
+/todo_client/lerna-debug.log*
+
+/todo_client/dist
+/todo_client/dist-ssr
+/todo_client/*.local
+
+# Editor directories and files
+/todo_client/.vscode/*
+/todo_client/!.vscode/extensions.json
+/todo_client/.idea
+/todo_client/.DS_Store
+/todo_client/*.suo
+/todo_client/*.ntvs*
+/todo_client/*.njsproj
+/todo_client/*.sln
+/todo_client/*.sw?
+
+################### Todo API ###################
+
+# Ignore bundler config.
+/todo_api/.bundle
+
+# Ignore all environment files (except templates).
+/todo_api/.env*
+/todo_api/!/.env*.erb
+
+# Ignore all logfiles and tempfiles.
+/todo_api/log/*
+/todo_api/tmp/*
+/todo_api/!/log/.keep
+/todo_api/!/tmp/.keep
+
+# Ignore pidfiles, but keep the directory.
+/todo_api/tmp/pids/*
+/todo_api/!/tmp/pids/
+/todo_api/!/tmp/pids/.keep
+
+# Ignore storage (uploaded files in development and any SQLite databases).
+/todo_api/storage/*
+/todo_api/!/storage/.keep
+/todo_api/tmp/storage/*
+/todo_api/!/tmp/storage/
+/todo_api/!/tmp/storage/.keep
+
+# Ignore master key for decrypting credentials and more.
+/todo_api/config/master.key
+
